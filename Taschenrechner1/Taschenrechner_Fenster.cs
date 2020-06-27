@@ -14,42 +14,59 @@ namespace Taschenrechner1
 {
     public partial class Taschenrechner_Fenster : Form
     {
-
+        private const string V = "";
         decimal[] zahl = new decimal[999];
         int counter;
         int treffer;
+        int zugewiesen;
 
         public void addnum(string wert, int Leerzeichen=0)
         {
             string Zeichen="";
-            if(Leerzeichen==1)
+            btn_istgleich.Visible = true;
+
+            if (Leerzeichen==1)
             {
                 Zeichen = " ";
+                btn_istgleich.Visible = false;
 
-                if (counter == 0)
+                switch (counter)
                 {
-                    zahl[counter] = Convert.ToDecimal(txtAnzeige.Text);
-                } else
-                {
-
-                for(int i = txtAnzeige.Text.Length;i>= 0; i--)
-                {
-                        if (txtAnzeige.Text.Substring(i, 1) == " ")
+                    case 0:
+                        zahl[counter] = Convert.ToDecimal(txtAnzeige.Text);
+                        zugewiesen = 1;
+                        break;
+                    default:
                         {
-                            treffer = i;
-                            break;
+
+                            for (int i = txtAnzeige.Text.Length; i >= 0; i--)
+                            {
+                                if (txtAnzeige.Text.Substring(i-1, 1) == " ")
+                                {
+                                    treffer = i;
+                                    break;
+                                }
+                            }
+
+                            if(txtAnzeige.Text.Length - treffer > 0)
+                            {
+                                zahl[counter] = Convert.ToDecimal(txtAnzeige.Text.Substring(treffer, txtAnzeige.Text.Length - treffer));
+                                zugewiesen = 1;
+                            }
                         }
+                        break;
                 }
 
-                    zahl[counter] = Convert.ToDecimal(txtAnzeige.Text.Substring(treffer + 1, txtAnzeige.Text.Length - treffer));
-
+                if (zugewiesen == 1)
+                {
+                    counter++;
+                    zugewiesen = 0;
                 }
-                counter++;
 
 
             }
 
-            if(txtAnzeige.Text.Length>0)
+            if (txtAnzeige.Text.Length > 0)
             {
                 if (txtAnzeige.Text.Substring(0,1)=="B")
                 {
@@ -57,6 +74,10 @@ namespace Taschenrechner1
                 }
             }
 
+            if(Leerzeichen==1 && txtAnzeige.Text.Substring(txtAnzeige.Text.Length-1,1)==" ")
+            {
+                txtAnzeige.Text = txtAnzeige.Text.Substring(0, txtAnzeige.Text.Length - 3);
+            }
             txtAnzeige.Text = txtAnzeige.Text + Zeichen + wert + Zeichen;
         }
 
@@ -173,14 +194,42 @@ namespace Taschenrechner1
             if (txtAnzeige.Text.Length == 0)
             {
                 Setzeleertext();
+                counter = 0;
             }
 
         }
 
     private void btn_clearall_Click(object sender, EventArgs e)
         {
-            txtAnzeige.Text = "";
+            txtAnzeige.Text = V;
+            counter = 0;
             Setzeleertext();
+        }
+
+        private void txtAnzeige_TextChanged(object sender, EventArgs e)
+        {
+            //if (txtAnzeige.Text.Length > 0)
+            //{
+            //    if (txtAnzeige.Text.Substring(0, 1) == "B")
+            //    {
+            //        txtAnzeige.Text = "";
+            //    }
+            //}
+        }
+
+        private void btn_0_Click(object sender, EventArgs e)
+        {
+            addnum("0");
+        }
+
+        private void btn_000_Click(object sender, EventArgs e)
+        {
+            addnum("000");
+        }
+
+        private void btn_komma_Click(object sender, EventArgs e)
+        {
+            addnum(".");
         }
     }
 }

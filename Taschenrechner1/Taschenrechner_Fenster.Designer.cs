@@ -45,6 +45,10 @@
             this.btn_clearall = new System.Windows.Forms.Button();
             this.btn_clear = new System.Windows.Forms.Button();
             this.btn_istgleich = new System.Windows.Forms.Button();
+            this.btn_0 = new System.Windows.Forms.Button();
+            this.btn_000 = new System.Windows.Forms.Button();
+            this.btn_komma = new System.Windows.Forms.Button();
+            this.btn_wurzel = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // btn_1
@@ -173,8 +177,9 @@
             this.txtAnzeige.Location = new System.Drawing.Point(91, 52);
             this.txtAnzeige.Multiline = true;
             this.txtAnzeige.Name = "txtAnzeige";
-            this.txtAnzeige.Size = new System.Drawing.Size(399, 60);
+            this.txtAnzeige.Size = new System.Drawing.Size(399, 111);
             this.txtAnzeige.TabIndex = 12;
+            this.txtAnzeige.TextChanged += new System.EventHandler(this.txtAnzeige_TextChanged);
             // 
             // btn_durch
             // 
@@ -215,11 +220,55 @@
             this.btn_istgleich.Text = "=";
             this.btn_istgleich.UseVisualStyleBackColor = true;
             // 
+            // btn_0
+            // 
+            this.btn_0.Location = new System.Drawing.Point(172, 256);
+            this.btn_0.Name = "btn_0";
+            this.btn_0.Size = new System.Drawing.Size(75, 23);
+            this.btn_0.TabIndex = 17;
+            this.btn_0.Text = "0";
+            this.btn_0.UseVisualStyleBackColor = true;
+            this.btn_0.Click += new System.EventHandler(this.btn_0_Click);
+            // 
+            // btn_000
+            // 
+            this.btn_000.Location = new System.Drawing.Point(253, 256);
+            this.btn_000.Name = "btn_000";
+            this.btn_000.Size = new System.Drawing.Size(75, 23);
+            this.btn_000.TabIndex = 18;
+            this.btn_000.Text = "000";
+            this.btn_000.UseVisualStyleBackColor = true;
+            this.btn_000.Click += new System.EventHandler(this.btn_000_Click);
+            // 
+            // btn_komma
+            // 
+            this.btn_komma.Location = new System.Drawing.Point(91, 256);
+            this.btn_komma.Name = "btn_komma";
+            this.btn_komma.Size = new System.Drawing.Size(75, 23);
+            this.btn_komma.TabIndex = 19;
+            this.btn_komma.Text = ".";
+            this.btn_komma.UseVisualStyleBackColor = true;
+            this.btn_komma.Click += new System.EventHandler(this.btn_komma_Click);
+            // 
+            // btn_wurzel
+            // 
+            this.btn_wurzel.Font = new System.Drawing.Font("Symbol", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(2)));
+            this.btn_wurzel.Location = new System.Drawing.Point(334, 423);
+            this.btn_wurzel.Name = "btn_wurzel";
+            this.btn_wurzel.Size = new System.Drawing.Size(75, 23);
+            this.btn_wurzel.TabIndex = 20;
+            this.btn_wurzel.Text = "Ö";
+            this.btn_wurzel.UseVisualStyleBackColor = true;
+            // 
             // Taschenrechner_Fenster
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1204, 683);
+            this.Controls.Add(this.btn_wurzel);
+            this.Controls.Add(this.btn_komma);
+            this.Controls.Add(this.btn_000);
+            this.Controls.Add(this.btn_0);
             this.Controls.Add(this.btn_istgleich);
             this.Controls.Add(this.btn_clear);
             this.Controls.Add(this.btn_clearall);
@@ -265,6 +314,10 @@
         private System.Windows.Forms.Button btn_clearall;
         private System.Windows.Forms.Button btn_clear;
         private System.Windows.Forms.Button btn_istgleich;
+        private System.Windows.Forms.Button btn_0;
+        private System.Windows.Forms.Button btn_000;
+        private System.Windows.Forms.Button btn_komma;
+        private System.Windows.Forms.Button btn_wurzel;
     }
 }
 
