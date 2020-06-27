@@ -44,13 +44,13 @@ namespace Taschenrechner1
                         }
                         break;
                     case "-":
-                        if (counter == 3)
+                        if (counter == 2)
                         {
-                            Zwischenergebnis = Zwischenergebnis + zahl[counter - 1] - zahl[counter];
+                            Zwischenergebnis = Zwischenergebnis + zahl[counter - 2] - zahl[counter - 1];
                         }
-                        else if (counter > 3)
+                        else if (counter > 2)
                         {
-                            Zwischenergebnis = Zwischenergebnis - zahl[counter];
+                            Zwischenergebnis = Zwischenergebnis - zahl[counter - 1];
                         }
                         break;
 
@@ -282,7 +282,7 @@ namespace Taschenrechner1
 
         private void btn_komma_Click(object sender, EventArgs e)
         {
-            addnum(".");
+            addnum(",");
         }
 
         private void btn_istgleich_Click(object sender, EventArgs e)
