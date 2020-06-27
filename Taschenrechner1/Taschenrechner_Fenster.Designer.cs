@@ -219,6 +219,7 @@
             this.btn_istgleich.TabIndex = 16;
             this.btn_istgleich.Text = "=";
             this.btn_istgleich.UseVisualStyleBackColor = true;
+            this.btn_istgleich.Click += new System.EventHandler(this.btn_istgleich_Click);
             // 
             // btn_0
             // 
@@ -253,7 +254,7 @@
             // btn_wurzel
             // 
             this.btn_wurzel.Font = new System.Drawing.Font("Symbol", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(2)));
-            this.btn_wurzel.Location = new System.Drawing.Point(334, 423);
+            this.btn_wurzel.Location = new System.Drawing.Point(415, 227);
             this.btn_wurzel.Name = "btn_wurzel";
             this.btn_wurzel.Size = new System.Drawing.Size(75, 23);
             this.btn_wurzel.TabIndex = 20;
