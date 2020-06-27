@@ -292,6 +292,7 @@ namespace Taschenrechner1
             Endergebnis = Zwischenergebnis.ToString();
             txtAnzeige.Text = Endergebnis;
             addnum("", false, false, true);
+
         }
     }
 }
