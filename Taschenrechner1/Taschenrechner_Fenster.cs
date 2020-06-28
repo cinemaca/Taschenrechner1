@@ -58,9 +58,9 @@ namespace Taschenrechner1
             }
         }
 
-        public int find_ZE(int start, string[] ZE)
+        public int Find_ZE(int start, string[] ZE)
         {
-            for (int i =  start + 1; 2 <= ZE.Length - 1 - start; i++)
+            for (int i = start + 1; i <= ZE.Length - 1; i++)
             {
 
                 if (ZE[i] != "")
@@ -69,14 +69,16 @@ namespace Taschenrechner1
                 }
             }
 
-            
+            return start + 1;
         }
-        public void rechnen_n()
+        public decimal Rechnen_n()
         {
+            int Find_Ergebnis;
             string[] Nums_Ops = txtAnzeige.Text.Split(' ');
             string[] ZE = txtAnzeige.Text.Split(' ');
             for (int i = 0; i <= ZE.Length - 1; i++)
             {
+                
                 switch (Nums_Ops[i])
                 {
                     case "*":
@@ -100,15 +102,16 @@ namespace Taschenrechner1
                 switch (Nums_Ops[i])
                 {
                     case "+":
-                        
-                            ZE[i + 1] = Convert.ToString(Convert.ToDecimal(ZE[i - 1]) + Convert.ToDecimal(ZE[find_ZE(i, ZE)]));
-                            ZE[i] = "";
-                            ZE[i - 1] = "";
+                        Find_Ergebnis = Find_ZE(i, ZE);
+                        ZE[Find_Ergebnis] = Convert.ToString(Convert.ToDecimal(ZE[i - 1]) + Convert.ToDecimal(ZE[Find_Ergebnis]));
+                        ZE[i] = "";
+                        ZE[i - 1] = "";
                         
                         break;
 
                     case "-":
-                        ZE[i + 1] = Convert.ToString(Convert.ToDecimal(ZE[i - 1]) + Convert.ToDecimal(ZE[find_ZE(i, ZE)]));
+                        Find_Ergebnis = Find_ZE(i, ZE);
+                        ZE[Find_Ergebnis] = Convert.ToString(Convert.ToDecimal(ZE[i - 1]) - Convert.ToDecimal(ZE[Find_Ergebnis]));
                         ZE[i] = "";
                         ZE[i - 1] = "";
                         break;
@@ -117,6 +120,14 @@ namespace Taschenrechner1
                 }
 
             }
+            for (int i = ZE.Length - 1; i > 0; i--)
+            {
+                if(ZE[i] != "")
+                {
+                    return Convert.ToDecimal(ZE[i]);
+                }
+            }
+            return 0;
         }
         public void addnum(string wert, bool Leerzeichen = false, bool lastNum = false, bool hardReset = false)
         {
@@ -349,10 +360,10 @@ namespace Taschenrechner1
         {
             
             addnum("0", true, true);
-            rechnen_n();
+            
             Endergebnis = Zwischenergebnis.ToString();
-            txtAnzeige.Text = Endergebnis;
-            addnum("", false, false, true);
+            txtAnzeige.Text = txtAnzeige.Text + " = " + Rechnen_n().ToString();
+            
 
         }
     }
