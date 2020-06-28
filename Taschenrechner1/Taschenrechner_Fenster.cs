@@ -19,9 +19,9 @@ namespace Taschenrechner1
         int counter;
         int treffer;
         bool zugewiesen;
-        decimal Zwischenergebnis = 0;
         string Zeichen = "";
         string Endergebnis;
+        decimal Zwischenergebnis = 0;
 
         public void rechnen(int c)
         {
@@ -58,6 +58,66 @@ namespace Taschenrechner1
             }
         }
 
+        public int find_ZE(int start, string[] ZE)
+        {
+            for (int i =  start + 1; 2 <= ZE.Length - 1 - start; i++)
+            {
+
+                if (ZE[i] != "")
+                {
+                    return i;
+                }
+            }
+
+            
+        }
+        public void rechnen_n()
+        {
+            string[] Nums_Ops = txtAnzeige.Text.Split(' ');
+            string[] ZE = txtAnzeige.Text.Split(' ');
+            for (int i = 0; i <= ZE.Length - 1; i++)
+            {
+                switch (Nums_Ops[i])
+                {
+                    case "*":
+                        ZE[i + 1] = Convert.ToString(Convert.ToDecimal(ZE[i - 1]) * Convert.ToDecimal(ZE[i + 1]));
+                        ZE[i] = "";
+                        ZE[i - 1] = "";
+                        break;
+
+                    case "/":
+                        ZE[i + 1] = Convert.ToString(Convert.ToDecimal(ZE[i - 1]) / Convert.ToDecimal(ZE[i + 1]));
+                        ZE[i] = "";
+                        ZE[i - 1] = "";
+                        break;
+
+
+                }
+
+            }
+            for (int i = 0; i <= ZE.Length - 1; i++)
+            {
+                switch (Nums_Ops[i])
+                {
+                    case "+":
+                        
+                            ZE[i + 1] = Convert.ToString(Convert.ToDecimal(ZE[i - 1]) + Convert.ToDecimal(ZE[find_ZE(i, ZE)]));
+                            ZE[i] = "";
+                            ZE[i - 1] = "";
+                        
+                        break;
+
+                    case "-":
+                        ZE[i + 1] = Convert.ToString(Convert.ToDecimal(ZE[i - 1]) + Convert.ToDecimal(ZE[find_ZE(i, ZE)]));
+                        ZE[i] = "";
+                        ZE[i - 1] = "";
+                        break;
+
+
+                }
+
+            }
+        }
         public void addnum(string wert, bool Leerzeichen = false, bool lastNum = false, bool hardReset = false)
         {
             btn_istgleich.Visible = true;
@@ -104,7 +164,7 @@ namespace Taschenrechner1
                     zugewiesen = false;
                 }
 
-                rechnen(counter);
+                
 
             }
 
@@ -289,6 +349,7 @@ namespace Taschenrechner1
         {
             
             addnum("0", true, true);
+            rechnen_n();
             Endergebnis = Zwischenergebnis.ToString();
             txtAnzeige.Text = Endergebnis;
             addnum("", false, false, true);
