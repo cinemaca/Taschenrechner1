@@ -177,7 +177,7 @@
             this.txtAnzeige.Location = new System.Drawing.Point(91, 52);
             this.txtAnzeige.Multiline = true;
             this.txtAnzeige.Name = "txtAnzeige";
-            this.txtAnzeige.Size = new System.Drawing.Size(399, 111);
+            this.txtAnzeige.Size = new System.Drawing.Size(1000, 111);
             this.txtAnzeige.TabIndex = 12;
             this.txtAnzeige.TextChanged += new System.EventHandler(this.txtAnzeige_TextChanged);
             // 
