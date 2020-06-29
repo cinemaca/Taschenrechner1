@@ -24,6 +24,7 @@ namespace Taschenrechner1
         string Endergebnis;
         decimal Zwischenergebnis = 0;
         bool Funktionausführung = false;
+        bool Ergebnisset = false;
 
         public void ClearA(bool hardReset = false)
         {
@@ -31,8 +32,8 @@ namespace Taschenrechner1
             {
                 txtAnzeige.Text = V;
                 Setzeleertext();
+                counter = 0;
             }
-            counter = 0;
             Zwischenergebnis = 0;
         }
         public void rechnen(int c)
@@ -337,20 +338,35 @@ namespace Taschenrechner1
         {
             ClearA(true);
         }
+
+        public int Finde_Zeichen(string Zeichen)
+        {
+            for(int i = 0; i <= txtAnzeige.Text.Length; i++)
+            {
+                if(txtAnzeige.Text.Substring(i, 1) == Zeichen)
+                {
+                    return i;
+                }
+            }
+            return 0;
+        }
+
         private void txtAnzeige_TextChanged(object sender, EventArgs e)
         {
-            //if (txtAnzeige.Text.Length > 0)
-            //{
-            //    if (txtAnzeige.Text.Substring(0, 1) == "B")
-            //    {
-            //        txtAnzeige.Text = "";
-            //    }
-            //}
+            if(Ergebnisset == true)
+            {
+                int istgleichichspot = Finde_Zeichen("=") + 1;
+                txtAnzeige.Text = txtAnzeige.Text.Substring(istgleichichspot, txtAnzeige.Text.Length - istgleichichspot);
+                Ergebnisset = false;
+            }
         }
 
         private void txtAnzeige_Click(object sender, EventArgs e)
         {
-            txtAnzeige.Text = "";
+            if(txtAnzeige.Text == "Bitte geben sie Zahlen und Rechenoperationen ein!")
+            {
+                txtAnzeige.Text = "";
+            }
         }
 
         private void btn_0_Click(object sender, EventArgs e)
@@ -374,6 +390,7 @@ namespace Taschenrechner1
             Structure_set();
             txtAnzeige.Text = txtAnzeige.Text + " = " + Rechnen_n().ToString();
             ClearA();
+            Ergebnisset = true;
 
         }
 
