@@ -24,6 +24,16 @@ namespace Taschenrechner1
         string Endergebnis;
         decimal Zwischenergebnis = 0;
 
+        public void ClearA(bool hardReset = false)
+        {
+            if(hardReset == true)
+            {
+                txtAnzeige.Text = V;
+                Setzeleertext();
+            }
+            counter = 0;
+            Zwischenergebnis = 0;
+        }
         public void rechnen(int c)
         {
             if (counter > 1)
@@ -72,6 +82,16 @@ namespace Taschenrechner1
 
             return start + 1;
         }
+
+        public void Structure_set()
+        {
+            txtAnzeige.Text = txtAnzeige.Text.Replace(" ", "");
+            txtAnzeige.Text = txtAnzeige.Text.Replace("+", " + ");
+            txtAnzeige.Text = txtAnzeige.Text.Replace("-", " - ");
+            txtAnzeige.Text = txtAnzeige.Text.Replace("*", " * ");
+            txtAnzeige.Text = txtAnzeige.Text.Replace("/", " / ");
+        }
+
         public decimal Rechnen_n()
         {
             int Find_Ergebnis;
@@ -130,7 +150,7 @@ namespace Taschenrechner1
             }
             return 0;
         }
-        public void addnum(string wert, bool Leerzeichen = false, bool lastNum = false, bool hardReset = false)
+        public void addnum(string wert, bool Leerzeichen = false, bool lastNum = false)
         {
             btn_istgleich.Visible = true;
             Zeichen = "";
@@ -194,17 +214,6 @@ namespace Taschenrechner1
             } else if(lastNum == false)
             {
                 txtAnzeige.Text = txtAnzeige.Text + Zeichen + wert + Zeichen;
-            }
-
-            if (hardReset == true)
-            {
-                counter = 0;
-                zugewiesen = false;
-                for (int i = 0; i < 999; i++)
-                {
-                    zahl[i] = 0;
-                }
-                Zwischenergebnis = Convert.ToDecimal(Endergebnis);
             }
         }
 
@@ -323,16 +332,14 @@ namespace Taschenrechner1
 
         }
 
-    private void btn_clearall_Click(object sender, EventArgs e)
+        private void btn_clearall_Click(object sender, EventArgs e)
         {
-            txtAnzeige.Text = V;
-            counter = 0;
-            Setzeleertext();
-            Zwischenergebnis = 0;
+            ClearA(true);
         }
 
         private void txtAnzeige_TextChanged(object sender, EventArgs e)
         {
+
             //if (txtAnzeige.Text.Length > 0)
             //{
             //    if (txtAnzeige.Text.Substring(0, 1) == "B")
@@ -359,12 +366,10 @@ namespace Taschenrechner1
 
         private void btn_istgleich_Click(object sender, EventArgs e)
         {
-            
-            addnum("0", true, true);
-            
             Endergebnis = Zwischenergebnis.ToString();
+            Structure_set();
             txtAnzeige.Text = txtAnzeige.Text + " = " + Rechnen_n().ToString();
-            
+            ClearA();
 
         }
 
