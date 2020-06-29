@@ -49,6 +49,7 @@
             this.btn_000 = new System.Windows.Forms.Button();
             this.btn_komma = new System.Windows.Forms.Button();
             this.btn_wurzel = new System.Windows.Forms.Button();
+            this.btn_00 = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // btn_1
@@ -76,7 +77,7 @@
             this.button3.Location = new System.Drawing.Point(253, 227);
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(75, 23);
-            this.button3.TabIndex = 2;
+            this.button3.TabIndex = 12;
             this.button3.Text = "9";
             this.button3.UseVisualStyleBackColor = true;
             this.button3.Click += new System.EventHandler(this.button3_Click);
@@ -86,7 +87,7 @@
             this.button4.Location = new System.Drawing.Point(172, 227);
             this.button4.Name = "button4";
             this.button4.Size = new System.Drawing.Size(75, 23);
-            this.button4.TabIndex = 3;
+            this.button4.TabIndex = 11;
             this.button4.Text = "8";
             this.button4.UseVisualStyleBackColor = true;
             this.button4.Click += new System.EventHandler(this.button4_Click);
@@ -96,7 +97,7 @@
             this.button5.Location = new System.Drawing.Point(91, 227);
             this.button5.Name = "button5";
             this.button5.Size = new System.Drawing.Size(75, 23);
-            this.button5.TabIndex = 4;
+            this.button5.TabIndex = 10;
             this.button5.Text = "7";
             this.button5.UseVisualStyleBackColor = true;
             this.button5.Click += new System.EventHandler(this.button5_Click);
@@ -106,7 +107,7 @@
             this.btn_6.Location = new System.Drawing.Point(253, 198);
             this.btn_6.Name = "btn_6";
             this.btn_6.Size = new System.Drawing.Size(75, 23);
-            this.btn_6.TabIndex = 5;
+            this.btn_6.TabIndex = 7;
             this.btn_6.Text = "6";
             this.btn_6.UseVisualStyleBackColor = true;
             this.btn_6.Click += new System.EventHandler(this.btn_6_Click);
@@ -126,7 +127,7 @@
             this.btn_4.Location = new System.Drawing.Point(91, 198);
             this.btn_4.Name = "btn_4";
             this.btn_4.Size = new System.Drawing.Size(75, 23);
-            this.btn_4.TabIndex = 7;
+            this.btn_4.TabIndex = 5;
             this.btn_4.Text = "4";
             this.btn_4.UseVisualStyleBackColor = true;
             this.btn_4.Click += new System.EventHandler(this.btn_4_Click);
@@ -136,7 +137,7 @@
             this.btn_3.Location = new System.Drawing.Point(253, 169);
             this.btn_3.Name = "btn_3";
             this.btn_3.Size = new System.Drawing.Size(75, 23);
-            this.btn_3.TabIndex = 8;
+            this.btn_3.TabIndex = 2;
             this.btn_3.Text = "3";
             this.btn_3.UseVisualStyleBackColor = true;
             this.btn_3.Click += new System.EventHandler(this.btn_3_Click);
@@ -146,7 +147,7 @@
             this.btn_plus.Location = new System.Drawing.Point(334, 169);
             this.btn_plus.Name = "btn_plus";
             this.btn_plus.Size = new System.Drawing.Size(75, 23);
-            this.btn_plus.TabIndex = 11;
+            this.btn_plus.TabIndex = 3;
             this.btn_plus.Text = "+";
             this.btn_plus.UseVisualStyleBackColor = true;
             this.btn_plus.Click += new System.EventHandler(this.btn_plus_Click);
@@ -156,7 +157,7 @@
             this.btn_minus.Location = new System.Drawing.Point(334, 198);
             this.btn_minus.Name = "btn_minus";
             this.btn_minus.Size = new System.Drawing.Size(75, 23);
-            this.btn_minus.TabIndex = 10;
+            this.btn_minus.TabIndex = 8;
             this.btn_minus.Text = "-";
             this.btn_minus.UseVisualStyleBackColor = true;
             this.btn_minus.Click += new System.EventHandler(this.btn_minus_Click);
@@ -166,7 +167,7 @@
             this.btn_mal.Location = new System.Drawing.Point(334, 227);
             this.btn_mal.Name = "btn_mal";
             this.btn_mal.Size = new System.Drawing.Size(75, 23);
-            this.btn_mal.TabIndex = 9;
+            this.btn_mal.TabIndex = 13;
             this.btn_mal.Text = "*";
             this.btn_mal.UseVisualStyleBackColor = true;
             this.btn_mal.Click += new System.EventHandler(this.btn_mal_Click);
@@ -183,10 +184,10 @@
             // 
             // btn_durch
             // 
-            this.btn_durch.Location = new System.Drawing.Point(334, 256);
+            this.btn_durch.Location = new System.Drawing.Point(415, 256);
             this.btn_durch.Name = "btn_durch";
             this.btn_durch.Size = new System.Drawing.Size(75, 23);
-            this.btn_durch.TabIndex = 13;
+            this.btn_durch.TabIndex = 19;
             this.btn_durch.Text = "/";
             this.btn_durch.UseVisualStyleBackColor = true;
             this.btn_durch.Click += new System.EventHandler(this.btn_durch_Click);
@@ -196,7 +197,7 @@
             this.btn_clearall.Location = new System.Drawing.Point(415, 198);
             this.btn_clearall.Name = "btn_clearall";
             this.btn_clearall.Size = new System.Drawing.Size(75, 23);
-            this.btn_clearall.TabIndex = 14;
+            this.btn_clearall.TabIndex = 9;
             this.btn_clearall.Text = "CA";
             this.btn_clearall.UseVisualStyleBackColor = true;
             this.btn_clearall.Click += new System.EventHandler(this.btn_clearall_Click);
@@ -206,17 +207,17 @@
             this.btn_clear.Location = new System.Drawing.Point(415, 169);
             this.btn_clear.Name = "btn_clear";
             this.btn_clear.Size = new System.Drawing.Size(75, 23);
-            this.btn_clear.TabIndex = 15;
+            this.btn_clear.TabIndex = 4;
             this.btn_clear.Text = "C";
             this.btn_clear.UseVisualStyleBackColor = true;
             this.btn_clear.Click += new System.EventHandler(this.btn_clear_Click);
             // 
             // btn_istgleich
             // 
-            this.btn_istgleich.Location = new System.Drawing.Point(415, 256);
+            this.btn_istgleich.Location = new System.Drawing.Point(496, 256);
             this.btn_istgleich.Name = "btn_istgleich";
             this.btn_istgleich.Size = new System.Drawing.Size(75, 23);
-            this.btn_istgleich.TabIndex = 16;
+            this.btn_istgleich.TabIndex = 20;
             this.btn_istgleich.Text = "=";
             this.btn_istgleich.UseVisualStyleBackColor = true;
             this.btn_istgleich.Click += new System.EventHandler(this.btn_istgleich_Click);
@@ -226,14 +227,14 @@
             this.btn_0.Location = new System.Drawing.Point(172, 256);
             this.btn_0.Name = "btn_0";
             this.btn_0.Size = new System.Drawing.Size(75, 23);
-            this.btn_0.TabIndex = 17;
+            this.btn_0.TabIndex = 16;
             this.btn_0.Text = "0";
             this.btn_0.UseVisualStyleBackColor = true;
             this.btn_0.Click += new System.EventHandler(this.btn_0_Click);
             // 
             // btn_000
             // 
-            this.btn_000.Location = new System.Drawing.Point(253, 256);
+            this.btn_000.Location = new System.Drawing.Point(334, 256);
             this.btn_000.Name = "btn_000";
             this.btn_000.Size = new System.Drawing.Size(75, 23);
             this.btn_000.TabIndex = 18;
@@ -246,7 +247,7 @@
             this.btn_komma.Location = new System.Drawing.Point(91, 256);
             this.btn_komma.Name = "btn_komma";
             this.btn_komma.Size = new System.Drawing.Size(75, 23);
-            this.btn_komma.TabIndex = 19;
+            this.btn_komma.TabIndex = 15;
             this.btn_komma.Text = ".";
             this.btn_komma.UseVisualStyleBackColor = true;
             this.btn_komma.Click += new System.EventHandler(this.btn_komma_Click);
@@ -257,15 +258,25 @@
             this.btn_wurzel.Location = new System.Drawing.Point(415, 227);
             this.btn_wurzel.Name = "btn_wurzel";
             this.btn_wurzel.Size = new System.Drawing.Size(75, 23);
-            this.btn_wurzel.TabIndex = 20;
+            this.btn_wurzel.TabIndex = 14;
             this.btn_wurzel.Text = "Ö";
             this.btn_wurzel.UseVisualStyleBackColor = true;
+            // 
+            // btn_00
+            // 
+            this.btn_00.Location = new System.Drawing.Point(253, 256);
+            this.btn_00.Name = "btn_00";
+            this.btn_00.Size = new System.Drawing.Size(75, 23);
+            this.btn_00.TabIndex = 17;
+            this.btn_00.Text = "00";
+            this.btn_00.UseVisualStyleBackColor = true;
             // 
             // Taschenrechner_Fenster
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1204, 683);
+            this.Controls.Add(this.btn_00);
             this.Controls.Add(this.btn_wurzel);
             this.Controls.Add(this.btn_komma);
             this.Controls.Add(this.btn_000);
@@ -319,6 +330,7 @@
         private System.Windows.Forms.Button btn_000;
         private System.Windows.Forms.Button btn_komma;
         private System.Windows.Forms.Button btn_wurzel;
+        private System.Windows.Forms.Button btn_00;
     }
 }
 
