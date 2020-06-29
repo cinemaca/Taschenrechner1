@@ -164,6 +164,7 @@ namespace Taschenrechner1
                 switch (counter)
                 {
                     case 0:
+                        if()
                         zahl[counter] = Convert.ToDecimal(txtAnzeige.Text);
                         zugewiesen = true;
                         break;
@@ -358,7 +359,6 @@ namespace Taschenrechner1
                 Ergebnisset = false;
                 int istgleichichspot = Finde_Zeichen("=") + 1;
                 txtAnzeige.Text = txtAnzeige.Text.Substring(istgleichichspot, txtAnzeige.Text.Length - istgleichichspot);
-                
             }
         }
 
