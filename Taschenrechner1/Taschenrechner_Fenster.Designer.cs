@@ -270,6 +270,7 @@
             this.btn_00.TabIndex = 17;
             this.btn_00.Text = "00";
             this.btn_00.UseVisualStyleBackColor = true;
+            this.btn_00.Click += new System.EventHandler(this.btn_00_Click);
             // 
             // Taschenrechner_Fenster
             // 

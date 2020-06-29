@@ -10,6 +10,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
+
 namespace Taschenrechner1
 {
     public partial class Taschenrechner_Fenster : Form
@@ -365,6 +366,11 @@ namespace Taschenrechner1
             txtAnzeige.Text = txtAnzeige.Text + " = " + Rechnen_n().ToString();
             
 
+        }
+
+        private void btn_00_Click(object sender, EventArgs e)
+        {
+            addnum("00");
         }
     }
 }
