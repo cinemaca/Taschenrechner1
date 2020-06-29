@@ -23,6 +23,7 @@ namespace Taschenrechner1
         string Zeichen = "";
         string Endergebnis;
         decimal Zwischenergebnis = 0;
+        bool Funktionausführung = false;
 
         public void ClearA(bool hardReset = false)
         {
@@ -90,6 +91,7 @@ namespace Taschenrechner1
             txtAnzeige.Text = txtAnzeige.Text.Replace("-", " - ");
             txtAnzeige.Text = txtAnzeige.Text.Replace("*", " * ");
             txtAnzeige.Text = txtAnzeige.Text.Replace("/", " / ");
+            txtAnzeige.Text = txtAnzeige.Text.Replace(".", ",");
         }
 
         public decimal Rechnen_n()
@@ -136,8 +138,6 @@ namespace Taschenrechner1
                         ZE[i] = "";
                         ZE[i - 1] = "";
                         break;
-
-
                 }
 
             }
@@ -221,6 +221,7 @@ namespace Taschenrechner1
         public void Setzeleertext()
         {
             txtAnzeige.Text = "Bitte geben sie Zahlen und Rechenoperationen ein!";
+            Funktionausführung = true;
         }
 
 
@@ -336,10 +337,8 @@ namespace Taschenrechner1
         {
             ClearA(true);
         }
-
         private void txtAnzeige_TextChanged(object sender, EventArgs e)
         {
-
             //if (txtAnzeige.Text.Length > 0)
             //{
             //    if (txtAnzeige.Text.Substring(0, 1) == "B")
@@ -347,6 +346,11 @@ namespace Taschenrechner1
             //        txtAnzeige.Text = "";
             //    }
             //}
+        }
+
+        private void txtAnzeige_Click(object sender, EventArgs e)
+        {
+            txtAnzeige.Text = "";
         }
 
         private void btn_0_Click(object sender, EventArgs e)

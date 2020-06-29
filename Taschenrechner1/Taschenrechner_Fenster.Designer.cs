@@ -181,6 +181,7 @@
             this.txtAnzeige.Size = new System.Drawing.Size(1000, 111);
             this.txtAnzeige.TabIndex = 12;
             this.txtAnzeige.TextChanged += new System.EventHandler(this.txtAnzeige_TextChanged);
+            this.txtAnzeige.Click += new System.EventHandler(this.txtAnzeige_Click);
             // 
             // btn_durch
             // 
