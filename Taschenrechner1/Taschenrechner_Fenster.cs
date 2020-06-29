@@ -355,9 +355,10 @@ namespace Taschenrechner1
         {
             if(Ergebnisset == true)
             {
+                Ergebnisset = false;
                 int istgleichichspot = Finde_Zeichen("=") + 1;
                 txtAnzeige.Text = txtAnzeige.Text.Substring(istgleichichspot, txtAnzeige.Text.Length - istgleichichspot);
-                Ergebnisset = false;
+                
             }
         }
 
