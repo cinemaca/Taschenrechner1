@@ -164,7 +164,6 @@ namespace Taschenrechner1
                 switch (counter)
                 {
                     case 0:
-                        if()
                         zahl[counter] = Convert.ToDecimal(txtAnzeige.Text);
                         zugewiesen = true;
                         break;
