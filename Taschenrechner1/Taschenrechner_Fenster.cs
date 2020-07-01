@@ -134,7 +134,6 @@ namespace Taschenrechner1
             string[] ZE = txtAnzeige.Text.Split(' ');
             for (int i = 0; i <= ZE.Length - 1; i++)
             {
-                
                 switch (Nums_Ops[i])
                 {
                     case "*":
