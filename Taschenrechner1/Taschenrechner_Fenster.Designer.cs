@@ -283,7 +283,6 @@
             this.btn_klammerauf.TabIndex = 21;
             this.btn_klammerauf.Text = "(";
             this.btn_klammerauf.UseVisualStyleBackColor = true;
-            this.btn_klammerauf.Click += new System.EventHandler(this.btn_klammerauf_Click);
             // 
             // btn_klammerzu
             // 
@@ -293,7 +292,6 @@
             this.btn_klammerzu.TabIndex = 22;
             this.btn_klammerzu.Text = ")";
             this.btn_klammerzu.UseVisualStyleBackColor = true;
-            this.btn_klammerzu.Click += new System.EventHandler(this.btn_klammerzu_Click);
             // 
             // Taschenrechner_Fenster
             // 
