@@ -88,17 +88,36 @@ namespace Taschenrechner1
 
         public void Structure_set()
         {
+            txtAnzeige.Text = txtAnzeige.Text.Replace(".", ",");
+           
             txtAnzeige.Text = txtAnzeige.Text.Replace(" ", "");
             txtAnzeige.Text = txtAnzeige.Text.Replace("+", " + ");
             txtAnzeige.Text = txtAnzeige.Text.Replace("-", " - ");
             txtAnzeige.Text = txtAnzeige.Text.Replace("*", " * ");
             txtAnzeige.Text = txtAnzeige.Text.Replace("/", " / ");
-            txtAnzeige.Text = txtAnzeige.Text.Replace(".", ",");
+            for (int i = 0; i < txtAnzeige.Text.Length; i++)
+            {
+                if (txtAnzeige.Text.Substring(i, 1) == ",")
+                {
+                    for (int i2 = i + 1; i2 < txtAnzeige.Text.Length - Finde_Zeichen(" "); i2++)
+                    {
+                        if (txtAnzeige.Text.Substring(i2, 1) == ",")
+                        {
+                            string txtAnzeigecopy = txtAnzeige.Text.Substring(i2, txtAnzeige.Text.Length - i2);
+                            int txtAnzeigecopy_Length = txtAnzeigecopy.Length;
+                            txtAnzeigecopy = txtAnzeigecopy.Replace(",", "");
+                            txtAnzeige.Text = txtAnzeige.Text.Substring(0, txtAnzeige.Text.Length - txtAnzeigecopy_Length) + txtAnzeigecopy;
+                            break;
+                        }
+                    }
+                }
+            }
         }
 
         public decimal Rechnen_n()
         {
             int Find_Ergebnis;
+            Structure_set();
             string[] Nums_Ops = txtAnzeige.Text.Split(' ');
             string[] ZE = txtAnzeige.Text.Split(' ');
             for (int i = 0; i <= ZE.Length - 1; i++)
@@ -165,7 +184,6 @@ namespace Taschenrechner1
                 switch (counter)
                 {
                     case 0:
-                        zahl[counter] = Convert.ToDecimal(txtAnzeige.Text);
                         zugewiesen = true;
                         break;
                     default:
@@ -182,7 +200,7 @@ namespace Taschenrechner1
 
                             if(txtAnzeige.Text.Length - treffer > 0)
                             {
-                                zahl[counter] = Convert.ToDecimal(txtAnzeige.Text.Substring(treffer, txtAnzeige.Text.Length - treffer));
+                                
                                 zugewiesen = true;
                             }
                         }
@@ -388,7 +406,6 @@ namespace Taschenrechner1
         private void btn_istgleich_Click(object sender, EventArgs e)
         {
             Endergebnis = Zwischenergebnis.ToString();
-            Structure_set();
             txtAnzeige.Text = txtAnzeige.Text + " = " + Rechnen_n().ToString();
             ClearA();
             Ergebnisset = true;
