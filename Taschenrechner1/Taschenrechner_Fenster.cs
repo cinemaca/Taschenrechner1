@@ -112,7 +112,14 @@ namespace Taschenrechner1
                                 txtAnzeigecopy = txtAnzeigecopy.Remove(Finde_Zeichen(" ", true) - 1);
                             }
                             txtAnzeigecopy = txtAnzeigecopy.Replace(",", "");
-                            txtAnzeige.Text = txtAnzeige.Text.Substring(0, txtAnzeige.Text.Length - txtAnzeigecopy_Length) + txtAnzeigecopy + txtAnzeigesave;
+                            if (Finde_Zeichen("+", false, i2) != 0 || Finde_Zeichen("-", false, i2) != 0 || Finde_Zeichen("*", false, i2) != 0 || Finde_Zeichen("/", false, i2) != 0)
+                            {
+                                txtAnzeige.Text = txtAnzeige.Text.Substring(0, txtAnzeige.Text.Length - txtAnzeigecopy_Length) + txtAnzeigecopy + txtAnzeigesave;
+                            }
+                            else
+                            {
+                                txtAnzeige.Text = txtAnzeige.Text.Substring(0, txtAnzeige.Text.Length - txtAnzeigecopy_Length) + txtAnzeigecopy;
+                            }
                             break;
                         }
                     }
