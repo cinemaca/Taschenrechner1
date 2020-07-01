@@ -305,6 +305,7 @@
             this.txtInfoKlammern.Name = "txtInfoKlammern";
             this.txtInfoKlammern.Size = new System.Drawing.Size(432, 20);
             this.txtInfoKlammern.TabIndex = 23;
+            this.txtInfoKlammern.Visible = false;
             // 
             // button1
             // 
