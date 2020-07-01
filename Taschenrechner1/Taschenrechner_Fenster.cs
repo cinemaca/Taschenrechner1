@@ -94,6 +94,7 @@ namespace Taschenrechner1
             txtAnzeige.Text = txtAnzeige.Text.Replace("-", " - ");
             txtAnzeige.Text = txtAnzeige.Text.Replace("*", " * ");
             txtAnzeige.Text = txtAnzeige.Text.Replace("/", " / ");
+            txtAnzeige.Text = txtAnzeige.Text.Replace("^", " ^ ");
             for (int i = 0; i < txtAnzeige.Text.Length; i++)
             {
                 if (txtAnzeige.Text.Substring(i, 1) == ",")
@@ -136,14 +137,39 @@ namespace Taschenrechner1
             {
                 switch (Nums_Ops[i])
                 {
+                    case "^":
+                        decimal Zwischenergebnis2 = 0;
+                        for (int e = 1; e < Convert.ToDecimal(ZE[i + 1]); e++)
+                        {
+                            if(e == 1)
+                            {
+                                Zwischenergebnis2 = Convert.ToDecimal(ZE[i - 1]) * Convert.ToDecimal(ZE[i - 1]);
+                            } else
+                            {
+                                Zwischenergebnis2 = Zwischenergebnis2 * Convert.ToDecimal(ZE[i - 1]);
+                            }
+                        }
+                        ZE[i + 1] = Convert.ToString(Zwischenergebnis2);
+                        ZE[i] = "";
+                        ZE[i - 1] = "";
+                        break;
+                }
+
+            }
+            for (int i = 0; i <= ZE.Length - 1; i++)
+            {
+                switch (Nums_Ops[i])
+                {
                     case "*":
-                        ZE[i + 1] = Convert.ToString(Convert.ToDecimal(ZE[i - 1]) * Convert.ToDecimal(ZE[i + 1]));
+                        Find_Ergebnis = Find_ZE(i, ZE);
+                        ZE[Find_Ergebnis] = Convert.ToString(Convert.ToDecimal(ZE[i - 1]) * Convert.ToDecimal(ZE[Find_Ergebnis]));
                         ZE[i] = "";
                         ZE[i - 1] = "";
                         break;
 
                     case "/":
-                        ZE[i + 1] = Convert.ToString(Convert.ToDecimal(ZE[i - 1]) / Convert.ToDecimal(ZE[i + 1]));
+                        Find_Ergebnis = Find_ZE(i, ZE);
+                        ZE[Find_Ergebnis] = Convert.ToString(Convert.ToDecimal(ZE[i - 1]) / Convert.ToDecimal(ZE[Find_Ergebnis]));
                         ZE[i] = "";
                         ZE[i - 1] = "";
                         break;
@@ -445,6 +471,11 @@ namespace Taschenrechner1
         private void btn_00_Click(object sender, EventArgs e)
         {
             addnum("00");
+        }
+
+        private void btn_potenz_Click(object sender, EventArgs e)
+        {
+            addnum("^", true);
         }
     }
 }

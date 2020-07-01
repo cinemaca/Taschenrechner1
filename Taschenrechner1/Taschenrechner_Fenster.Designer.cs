@@ -50,6 +50,7 @@
             this.btn_komma = new System.Windows.Forms.Button();
             this.btn_wurzel = new System.Windows.Forms.Button();
             this.btn_00 = new System.Windows.Forms.Button();
+            this.btn_potenz = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // btn_1
@@ -180,15 +181,15 @@
             this.txtAnzeige.Name = "txtAnzeige";
             this.txtAnzeige.Size = new System.Drawing.Size(1000, 111);
             this.txtAnzeige.TabIndex = 12;
-            this.txtAnzeige.TextChanged += new System.EventHandler(this.txtAnzeige_TextChanged);
             this.txtAnzeige.Click += new System.EventHandler(this.txtAnzeige_Click);
+            this.txtAnzeige.TextChanged += new System.EventHandler(this.txtAnzeige_TextChanged);
             // 
             // btn_durch
             // 
             this.btn_durch.Location = new System.Drawing.Point(415, 256);
             this.btn_durch.Name = "btn_durch";
             this.btn_durch.Size = new System.Drawing.Size(75, 23);
-            this.btn_durch.TabIndex = 19;
+            this.btn_durch.TabIndex = 20;
             this.btn_durch.Text = "/";
             this.btn_durch.UseVisualStyleBackColor = true;
             this.btn_durch.Click += new System.EventHandler(this.btn_durch_Click);
@@ -218,7 +219,7 @@
             this.btn_istgleich.Location = new System.Drawing.Point(496, 256);
             this.btn_istgleich.Name = "btn_istgleich";
             this.btn_istgleich.Size = new System.Drawing.Size(75, 23);
-            this.btn_istgleich.TabIndex = 20;
+            this.btn_istgleich.TabIndex = 21;
             this.btn_istgleich.Text = "=";
             this.btn_istgleich.UseVisualStyleBackColor = true;
             this.btn_istgleich.Click += new System.EventHandler(this.btn_istgleich_Click);
@@ -228,7 +229,7 @@
             this.btn_0.Location = new System.Drawing.Point(172, 256);
             this.btn_0.Name = "btn_0";
             this.btn_0.Size = new System.Drawing.Size(75, 23);
-            this.btn_0.TabIndex = 16;
+            this.btn_0.TabIndex = 17;
             this.btn_0.Text = "0";
             this.btn_0.UseVisualStyleBackColor = true;
             this.btn_0.Click += new System.EventHandler(this.btn_0_Click);
@@ -238,7 +239,7 @@
             this.btn_000.Location = new System.Drawing.Point(334, 256);
             this.btn_000.Name = "btn_000";
             this.btn_000.Size = new System.Drawing.Size(75, 23);
-            this.btn_000.TabIndex = 18;
+            this.btn_000.TabIndex = 19;
             this.btn_000.Text = "000";
             this.btn_000.UseVisualStyleBackColor = true;
             this.btn_000.Click += new System.EventHandler(this.btn_000_Click);
@@ -248,7 +249,7 @@
             this.btn_komma.Location = new System.Drawing.Point(91, 256);
             this.btn_komma.Name = "btn_komma";
             this.btn_komma.Size = new System.Drawing.Size(75, 23);
-            this.btn_komma.TabIndex = 15;
+            this.btn_komma.TabIndex = 16;
             this.btn_komma.Text = ".";
             this.btn_komma.UseVisualStyleBackColor = true;
             this.btn_komma.Click += new System.EventHandler(this.btn_komma_Click);
@@ -268,16 +269,27 @@
             this.btn_00.Location = new System.Drawing.Point(253, 256);
             this.btn_00.Name = "btn_00";
             this.btn_00.Size = new System.Drawing.Size(75, 23);
-            this.btn_00.TabIndex = 17;
+            this.btn_00.TabIndex = 18;
             this.btn_00.Text = "00";
             this.btn_00.UseVisualStyleBackColor = true;
             this.btn_00.Click += new System.EventHandler(this.btn_00_Click);
+            // 
+            // btn_potenz
+            // 
+            this.btn_potenz.Location = new System.Drawing.Point(496, 227);
+            this.btn_potenz.Name = "btn_potenz";
+            this.btn_potenz.Size = new System.Drawing.Size(75, 23);
+            this.btn_potenz.TabIndex = 15;
+            this.btn_potenz.Text = "^";
+            this.btn_potenz.UseVisualStyleBackColor = true;
+            this.btn_potenz.Click += new System.EventHandler(this.btn_potenz_Click);
             // 
             // Taschenrechner_Fenster
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1204, 683);
+            this.Controls.Add(this.btn_potenz);
             this.Controls.Add(this.btn_00);
             this.Controls.Add(this.btn_wurzel);
             this.Controls.Add(this.btn_komma);
@@ -333,6 +345,7 @@
         private System.Windows.Forms.Button btn_komma;
         private System.Windows.Forms.Button btn_wurzel;
         private System.Windows.Forms.Button btn_00;
+        private System.Windows.Forms.Button btn_potenz;
     }
 }
 
