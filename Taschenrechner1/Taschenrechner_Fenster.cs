@@ -30,6 +30,7 @@ namespace Taschenrechner1
         {
             if(hardReset == true)
             {
+                Ergebnisset = false;
                 txtAnzeige.Text = V;
                 Setzeleertext();
                 counter = 0;
