@@ -89,7 +89,6 @@ namespace Taschenrechner1
         public void Structure_set()
         {
             txtAnzeige.Text = txtAnzeige.Text.Replace(".", ",");
-           
             txtAnzeige.Text = txtAnzeige.Text.Replace(" ", "");
             txtAnzeige.Text = txtAnzeige.Text.Replace("+", " + ");
             txtAnzeige.Text = txtAnzeige.Text.Replace("-", " - ");
