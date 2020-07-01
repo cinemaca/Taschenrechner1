@@ -99,14 +99,20 @@ namespace Taschenrechner1
             {
                 if (txtAnzeige.Text.Substring(i, 1) == ",")
                 {
-                    for (int i2 = i + 1; i2 < txtAnzeige.Text.Length - Finde_Zeichen(" "); i2++)
+                    for (int i2 = i + 1; i2
+                        < txtAnzeige.Text.Length - Finde_Zeichen(" ", false, i2); i2++)
                     {
                         if (txtAnzeige.Text.Substring(i2, 1) == ",")
                         {
+                            string txtAnzeigesave = txtAnzeige.Text.Substring(Finde_Zeichen(" ", true) + 1);
                             string txtAnzeigecopy = txtAnzeige.Text.Substring(i2, txtAnzeige.Text.Length - i2);
                             int txtAnzeigecopy_Length = txtAnzeigecopy.Length;
+                            if (Finde_Zeichen("+", false, i2) != 0 || Finde_Zeichen("-", false, i2) != 0 || Finde_Zeichen("*", false, i2) != 0 || Finde_Zeichen("/", false, i2) != 0)
+                            {
+                                txtAnzeigecopy = txtAnzeigecopy.Remove(Finde_Zeichen(" ", true) - 1);
+                            }
                             txtAnzeigecopy = txtAnzeigecopy.Replace(",", "");
-                            txtAnzeige.Text = txtAnzeige.Text.Substring(0, txtAnzeige.Text.Length - txtAnzeigecopy_Length) + txtAnzeigecopy;
+                            txtAnzeige.Text = txtAnzeige.Text.Substring(0, txtAnzeige.Text.Length - txtAnzeigecopy_Length) + txtAnzeigecopy + txtAnzeigesave;
                             break;
                         }
                     }
@@ -358,15 +364,34 @@ namespace Taschenrechner1
             ClearA(true);
         }
 
-        public int Finde_Zeichen(string Zeichen)
+        public int Finde_Zeichen(string Zeichen, bool specialsearch = false, int startpoint = 0)
         {
-            for(int i = 0; i <= txtAnzeige.Text.Length; i++)
+            if(specialsearch == false)
             {
-                if(txtAnzeige.Text.Substring(i, 1) == Zeichen)
+                for (int i = startpoint; i < txtAnzeige.Text.Length; i++)
                 {
-                    return i;
+                    if (txtAnzeige.Text.Substring(i, 1) == Zeichen)
+                    {
+                        return i;
+                    }
+                }
+            } else if(specialsearch == true)
+            {
+                for (int i = startpoint; i < txtAnzeige.Text.Length; i++)
+                {
+                    if (txtAnzeige.Text.Substring(i, 1) == Zeichen)
+                    {
+                        for(int i2 = i + 1; i < txtAnzeige.Text.Length; i2++)
+                        {
+                            if (txtAnzeige.Text.Substring(i2, 1) == Zeichen)
+                            {
+                                return i2;
+                            }
+                        }
+                    }
                 }
             }
+            
             return 0;
         }
 
