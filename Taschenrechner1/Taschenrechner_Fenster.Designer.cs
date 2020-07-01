@@ -53,6 +53,7 @@
             this.btn_klammerauf = new System.Windows.Forms.Button();
             this.btn_klammerzu = new System.Windows.Forms.Button();
             this.txtInfoKlammern = new System.Windows.Forms.TextBox();
+            this.button1 = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // btn_1
@@ -305,11 +306,22 @@
             this.txtInfoKlammern.Size = new System.Drawing.Size(432, 20);
             this.txtInfoKlammern.TabIndex = 23;
             // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(496, 227);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(75, 23);
+            this.button1.TabIndex = 24;
+            this.button1.Text = "^";
+            this.button1.UseVisualStyleBackColor = false;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
             // Taschenrechner_Fenster
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1204, 683);
+            this.Controls.Add(this.button1);
             this.Controls.Add(this.txtInfoKlammern);
             this.Controls.Add(this.btn_klammerzu);
             this.Controls.Add(this.btn_klammerauf);
@@ -371,6 +383,7 @@
         private System.Windows.Forms.Button btn_klammerauf;
         private System.Windows.Forms.Button btn_klammerzu;
         private System.Windows.Forms.TextBox txtInfoKlammern;
+        private System.Windows.Forms.Button button1;
     }
 }
 

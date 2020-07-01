@@ -525,5 +525,10 @@ namespace Taschenrechner1
         {
             addnum("");
         }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            addnum(" ^ ");
+        }
     }
 }
