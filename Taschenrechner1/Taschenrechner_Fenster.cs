@@ -462,7 +462,16 @@ namespace Taschenrechner1
         private void btn_istgleich_Click(object sender, EventArgs e)
         {
             Endergebnis = Zwischenergebnis.ToString();
-            txtAnzeige.Text = txtAnzeige.Text + " = " + Rechnen_n().ToString();
+
+            if (txtAnzeige.Text.IndexOf("(") > 0 || txtAnzeige.Text.IndexOf(")") > 0)
+            {
+                txtAnzeige.Text= txtAnzeige.Text + "   Hier ist etwas anders zu machen!";
+
+            }else
+            {
+                txtAnzeige.Text = txtAnzeige.Text + " = " + Rechnen_n().ToString();
+            }
+
             ClearA();
             Ergebnisset = true;
 
@@ -471,11 +480,6 @@ namespace Taschenrechner1
         private void btn_00_Click(object sender, EventArgs e)
         {
             addnum("00");
-        }
-
-        private void btn_potenz_Click(object sender, EventArgs e)
-        {
-            addnum("^", true);
         }
     }
 }
