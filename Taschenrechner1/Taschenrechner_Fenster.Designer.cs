@@ -50,6 +50,8 @@
             this.btn_komma = new System.Windows.Forms.Button();
             this.btn_wurzel = new System.Windows.Forms.Button();
             this.btn_00 = new System.Windows.Forms.Button();
+            this.btn_klammerauf = new System.Windows.Forms.Button();
+            this.btn_klammerzu = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // btn_1
@@ -180,8 +182,8 @@
             this.txtAnzeige.Name = "txtAnzeige";
             this.txtAnzeige.Size = new System.Drawing.Size(1000, 111);
             this.txtAnzeige.TabIndex = 12;
-            this.txtAnzeige.TextChanged += new System.EventHandler(this.txtAnzeige_TextChanged);
             this.txtAnzeige.Click += new System.EventHandler(this.txtAnzeige_Click);
+            this.txtAnzeige.TextChanged += new System.EventHandler(this.txtAnzeige_TextChanged);
             // 
             // btn_durch
             // 
@@ -273,11 +275,33 @@
             this.btn_00.UseVisualStyleBackColor = true;
             this.btn_00.Click += new System.EventHandler(this.btn_00_Click);
             // 
+            // btn_klammerauf
+            // 
+            this.btn_klammerauf.Location = new System.Drawing.Point(565, 330);
+            this.btn_klammerauf.Name = "btn_klammerauf";
+            this.btn_klammerauf.Size = new System.Drawing.Size(75, 23);
+            this.btn_klammerauf.TabIndex = 21;
+            this.btn_klammerauf.Text = "(";
+            this.btn_klammerauf.UseVisualStyleBackColor = true;
+            this.btn_klammerauf.Click += new System.EventHandler(this.btn_klammerauf_Click);
+            // 
+            // btn_klammerzu
+            // 
+            this.btn_klammerzu.Location = new System.Drawing.Point(646, 330);
+            this.btn_klammerzu.Name = "btn_klammerzu";
+            this.btn_klammerzu.Size = new System.Drawing.Size(75, 23);
+            this.btn_klammerzu.TabIndex = 22;
+            this.btn_klammerzu.Text = ")";
+            this.btn_klammerzu.UseVisualStyleBackColor = true;
+            this.btn_klammerzu.Click += new System.EventHandler(this.btn_klammerzu_Click);
+            // 
             // Taschenrechner_Fenster
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1204, 683);
+            this.Controls.Add(this.btn_klammerzu);
+            this.Controls.Add(this.btn_klammerauf);
             this.Controls.Add(this.btn_00);
             this.Controls.Add(this.btn_wurzel);
             this.Controls.Add(this.btn_komma);
@@ -333,6 +357,8 @@
         private System.Windows.Forms.Button btn_komma;
         private System.Windows.Forms.Button btn_wurzel;
         private System.Windows.Forms.Button btn_00;
+        private System.Windows.Forms.Button btn_klammerauf;
+        private System.Windows.Forms.Button btn_klammerzu;
     }
 }
 
