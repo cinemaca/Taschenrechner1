@@ -52,6 +52,7 @@
             this.btn_00 = new System.Windows.Forms.Button();
             this.btn_klammerauf = new System.Windows.Forms.Button();
             this.btn_klammerzu = new System.Windows.Forms.Button();
+            this.txtInfoKlammern = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
             // btn_1
@@ -264,6 +265,8 @@
             this.btn_wurzel.TabIndex = 14;
             this.btn_wurzel.Text = "Ö";
             this.btn_wurzel.UseVisualStyleBackColor = true;
+            this.btn_wurzel.Visible = false;
+            this.btn_wurzel.Click += new System.EventHandler(this.btn_wurzel_Click);
             // 
             // btn_00
             // 
@@ -277,27 +280,37 @@
             // 
             // btn_klammerauf
             // 
-            this.btn_klammerauf.Location = new System.Drawing.Point(565, 330);
+            this.btn_klammerauf.Location = new System.Drawing.Point(496, 169);
             this.btn_klammerauf.Name = "btn_klammerauf";
             this.btn_klammerauf.Size = new System.Drawing.Size(75, 23);
             this.btn_klammerauf.TabIndex = 21;
             this.btn_klammerauf.Text = "(";
             this.btn_klammerauf.UseVisualStyleBackColor = true;
+            this.btn_klammerauf.Click += new System.EventHandler(this.btn_klammerauf_Click);
             // 
             // btn_klammerzu
             // 
-            this.btn_klammerzu.Location = new System.Drawing.Point(646, 330);
+            this.btn_klammerzu.Location = new System.Drawing.Point(577, 169);
             this.btn_klammerzu.Name = "btn_klammerzu";
             this.btn_klammerzu.Size = new System.Drawing.Size(75, 23);
             this.btn_klammerzu.TabIndex = 22;
             this.btn_klammerzu.Text = ")";
             this.btn_klammerzu.UseVisualStyleBackColor = true;
+            this.btn_klammerzu.Click += new System.EventHandler(this.btn_klammerzu_Click);
+            // 
+            // txtInfoKlammern
+            // 
+            this.txtInfoKlammern.Location = new System.Drawing.Point(659, 170);
+            this.txtInfoKlammern.Name = "txtInfoKlammern";
+            this.txtInfoKlammern.Size = new System.Drawing.Size(432, 20);
+            this.txtInfoKlammern.TabIndex = 23;
             // 
             // Taschenrechner_Fenster
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1204, 683);
+            this.Controls.Add(this.txtInfoKlammern);
             this.Controls.Add(this.btn_klammerzu);
             this.Controls.Add(this.btn_klammerauf);
             this.Controls.Add(this.btn_00);
@@ -357,6 +370,7 @@
         private System.Windows.Forms.Button btn_00;
         private System.Windows.Forms.Button btn_klammerauf;
         private System.Windows.Forms.Button btn_klammerzu;
+        private System.Windows.Forms.TextBox txtInfoKlammern;
     }
 }
 

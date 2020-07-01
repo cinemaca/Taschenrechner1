@@ -34,6 +34,8 @@ namespace Taschenrechner1
                 txtAnzeige.Text = V;
                 Setzeleertext();
                 counter = 0;
+                txtInfoKlammern.Text = "";
+                txtInfoKlammern.Visible = false;
             }
             Zwischenergebnis = 0;
         }
@@ -211,6 +213,7 @@ namespace Taschenrechner1
         public void addnum(string wert, bool Leerzeichen = false, bool lastNum = false)
         {
             btn_istgleich.Visible = true;
+            SetzeInfoKlammernText();
             Zeichen = "";
 
             if (Leerzeichen)
@@ -274,6 +277,31 @@ namespace Taschenrechner1
             }
         }
 
+        private void SetzeInfoKlammernText()
+        {
+            String Ausgabetext = "";
+            int Klammerauf, Klammerzu;
+            txtInfoKlammern.Visible = false;
+            if (txtAnzeige.Text.Length >0)
+            {
+                txtInfoKlammern.Visible = (txtAnzeige.Text.IndexOf("(") > 0 || txtAnzeige.Text.IndexOf(")") > 0);
+            }
+            // Ermittle Anzahl von Klamerpaaren
+            if (txtInfoKlammern.Visible)
+            {
+                for(int i = 0; i<=txtAnzeige.Text.Length - 1; i++)
+                {
+                    //if(txtAnzeige.Text.Substring(i, 1) = "(")
+                    //{
+                    //    //Klammerauf=Klammerauf++;
+                    //}
+
+                } 
+            }
+            Ausgabetext = "Es gibt x Klammern...";
+            txtInfoKlammern.Text = Ausgabetext;
+ 
+        }
 
         public void Setzeleertext()
         {
@@ -480,6 +508,22 @@ namespace Taschenrechner1
         private void btn_00_Click(object sender, EventArgs e)
         {
             addnum("00");
+        }
+
+        private void btn_klammerauf_Click(object sender, EventArgs e)
+        {
+            addnum("(");
+            txtInfoKlammern.Visible = true;
+        }
+
+        private void btn_klammerzu_Click(object sender, EventArgs e)
+        {
+            addnum(")");
+        }
+
+        private void btn_wurzel_Click(object sender, EventArgs e)
+        {
+            addnum("");
         }
     }
 }
