@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.Drawing.Drawing2D;
 using System.Linq;
 using System.Runtime.InteropServices;
 using System.Security.Policy;
@@ -38,6 +39,7 @@ namespace Taschenrechner1
                 txtInfoKlammern.Visible = false;
             }
             Zwischenergebnis = 0;
+            webTRGoogle.Visible = false;                                                                                                        //Webseite abschalten
         }
         public void rechnen(int c)
         {
@@ -129,7 +131,52 @@ namespace Taschenrechner1
             }
         }
 
-        public decimal Rechnen_n()
+
+        public string Structure_set_mitKlammern(string Textzumbearbeiten)                                                               // Gleiche Funktion wie "Structure_set" nur mit Parameter
+        {                                                                                                                               // Empfehlung Umbau zu der Funktion hier?
+            Textzumbearbeiten = Textzumbearbeiten.Replace(".", ",");
+            Textzumbearbeiten = Textzumbearbeiten.Replace(" ", "");
+            Textzumbearbeiten = Textzumbearbeiten.Replace("+", " + ");
+            Textzumbearbeiten = Textzumbearbeiten.Replace("-", " - ");
+            Textzumbearbeiten = Textzumbearbeiten.Replace("*", " * ");
+            Textzumbearbeiten = Textzumbearbeiten.Replace("/", " / ");
+            Textzumbearbeiten = Textzumbearbeiten.Replace("^", " ^ ");
+            for (int i = 0; i < Textzumbearbeiten.Length; i++)
+            {
+                if (Textzumbearbeiten.Substring(i, 1) == ",")
+                {
+                    for (int i2 = i + 1; i2
+                        < Textzumbearbeiten.Length - Finde_Zeichen(" ", false, i2); i2++)
+                    {
+                        if (Textzumbearbeiten.Substring(i2, 1) == ",")
+                        {
+                            string txtAnzeigesave = Textzumbearbeiten.Substring(Finde_Zeichen(" ", true) + 1);
+                            string txtAnzeigecopy = Textzumbearbeiten.Substring(i2, Textzumbearbeiten.Length - i2);
+                            int txtAnzeigecopy_Length = txtAnzeigecopy.Length;
+                            if (Finde_Zeichen("+", false, i2) != 0 || Finde_Zeichen("-", false, i2) != 0 || Finde_Zeichen("*", false, i2) != 0 || Finde_Zeichen("/", false, i2) != 0)
+                            {
+                                txtAnzeigecopy = txtAnzeigecopy.Remove(Finde_Zeichen(" ", true) - 1);
+                            }
+                            txtAnzeigecopy = txtAnzeigecopy.Replace(",", "");
+                            if (Finde_Zeichen("+", false, i2) != 0 || Finde_Zeichen("-", false, i2) != 0 || Finde_Zeichen("*", false, i2) != 0 || Finde_Zeichen("/", false, i2) != 0)
+                            {
+                                Textzumbearbeiten = Textzumbearbeiten.Substring(0, Textzumbearbeiten.Length - txtAnzeigecopy_Length) + txtAnzeigecopy + txtAnzeigesave;
+                            }
+                            else
+                            {
+                                Textzumbearbeiten = Textzumbearbeiten.Substring(0, Textzumbearbeiten.Length - txtAnzeigecopy_Length) + txtAnzeigecopy;
+                            }
+                            break;
+                        }
+                    }
+                }
+            }
+
+            return Textzumbearbeiten;
+        }
+
+
+        public decimal Rechnen_n()                                                                                                                  // Empfehlung Umbau zu "Rechnen_nmitKlammern"
         {
             int Find_Ergebnis;
             Structure_set();
@@ -140,6 +187,7 @@ namespace Taschenrechner1
                 switch (Nums_Ops[i])
                 {
                     case "^":
+                          
                         decimal Zwischenergebnis2 = 0;
                         for (int e = 1; e < Convert.ToDecimal(ZE[i + 1]); e++)
                         {
@@ -156,7 +204,6 @@ namespace Taschenrechner1
                         ZE[i - 1] = "";
                         break;
                 }
-
             }
             for (int i = 0; i <= ZE.Length - 1; i++)
             {
@@ -210,6 +257,96 @@ namespace Taschenrechner1
             }
             return 0;
         }
+
+
+        public decimal Rechnen_nmitKlammern(string Textzumberechnen)                                                        // Neue Funkion, eigentlich eine Kopie von "Rechnen_n" nur mit Parameter
+        {                                                                                                                   // Es wurde nur txtAnzeige.Text durch Textzumberechnen ersetzt und Variablen eingefügt
+            int Find_Ergebnis;
+            Textzumberechnen= Structure_set_mitKlammern(Textzumberechnen);                                                  // Neuer Aufruf Structure_set_mitKlammern - da diese auch Parametriesiert ist Empfehlung switchen zu dieser hier
+            string[] Nums_Ops = Textzumberechnen.Split(' ');
+            string[] ZE = Textzumberechnen.Split(' ');
+
+            for (int i = 0; i <= ZE.Length - 1; i++)
+            {
+                    switch (Nums_Ops[i])
+                    {
+                        case "^":                                                                                           // Das reine " Karret " erzeugte Fehler auch in Rechnen_n, jetzt aber auch noch!!
+
+                            decimal Zwischenergebnis2 = 0;
+                            for (int e = 1; e < Convert.ToDecimal(ZE[i + 1]); e++)
+                            {
+                                if (e == 1)
+                                {
+                                    Zwischenergebnis2 = Convert.ToDecimal(ZE[i - 1]) * Convert.ToDecimal(ZE[i - 1]);
+                                }
+                                else
+                                {
+                                    Zwischenergebnis2 = Zwischenergebnis2 * Convert.ToDecimal(ZE[i - 1]);
+                                }
+                            }
+                            ZE[i + 1] = Convert.ToString(Zwischenergebnis2);
+                            ZE[i] = "";
+                            ZE[i - 1] = "";
+                            break;
+                    }
+            }
+            for (int i = 0; i <= ZE.Length - 1; i++)
+            {
+                switch (Nums_Ops[i])
+                {
+                    case "*":
+                        Find_Ergebnis = Find_ZE(i, ZE);
+                        ZE[Find_Ergebnis] = Convert.ToString(Convert.ToDecimal(ZE[i - 1]) * Convert.ToDecimal(ZE[Find_Ergebnis]));
+                        ZE[i] = "";
+                        ZE[i - 1] = "";
+                        break;
+
+                    case "/":
+                        Find_Ergebnis = Find_ZE(i, ZE);
+                        ZE[Find_Ergebnis] = Convert.ToString(Convert.ToDecimal(ZE[i - 1]) / Convert.ToDecimal(ZE[Find_Ergebnis]));
+                        ZE[i] = "";
+                        ZE[i - 1] = "";
+                        break;
+
+
+                }
+
+            }
+            for (int i = 0; i <= ZE.Length - 1; i++)
+            {
+                switch (Nums_Ops[i])
+                {
+                    case "+":
+                        Find_Ergebnis = Find_ZE(i, ZE);
+                        ZE[Find_Ergebnis] = Convert.ToString(Convert.ToDecimal(ZE[i - 1]) + Convert.ToDecimal(ZE[Find_Ergebnis]));
+                        ZE[i] = "";
+                        ZE[i - 1] = "";
+
+                        break;
+
+                    case "-":
+                        Find_Ergebnis = Find_ZE(i, ZE);
+                        ZE[Find_Ergebnis] = Convert.ToString(Convert.ToDecimal(ZE[i - 1]) - Convert.ToDecimal(ZE[Find_Ergebnis]));
+                        ZE[i] = "";
+                        ZE[i - 1] = "";
+                        break;
+                }
+
+            }
+            for (int i = ZE.Length - 1; i > 0; i--)                                                                                                 // Achtung Fehler bei nur einem Zeichen?
+            {                                                                                                                                       // Zeichenlänge 1 dann ZE[] = "" ToDecimal schlägt fehl! Prüfen - Darwin?
+                if (ZE[i] != "")
+                {
+                    return Convert.ToDecimal(ZE[i]);                                                                                                
+                }                                                                                                                                   
+            }
+            return 0;
+        }
+
+
+
+
+
         public void addnum(string wert, bool Leerzeichen = false, bool lastNum = false)
         {
             btn_istgleich.Visible = true;
@@ -231,7 +368,7 @@ namespace Taschenrechner1
 
                             for (int i = txtAnzeige.Text.Length; i >= 0; i--)
                             {
-                                if (txtAnzeige.Text.Substring(i-1, 1) == " ")
+                                if (txtAnzeige.Text.Substring(i-1, 1) == " ")  //Das verstehe ich nicht.. wenn Länge = 1 dann Error?
                                 {
                                     treffer = i;
                                     break;
@@ -281,41 +418,41 @@ namespace Taschenrechner1
 
         }
 
-        private void SetzeInfoKlammernText()
-        {
+        private void SetzeInfoKlammernText()                                                                                                    // Neue Funktion zum befüllen des Info Textes Klammernprüfung (nur fürs Auge)
+        {                                                                                                                                       // Eigentlich nur die Prüfung sind genug Klammern da, Google hat das besser gelöst
             int AnzahlKlammerauf=0, AnzahlKlammerzu=0;
             
-            txtInfoKlammern.Visible = false;
+            txtInfoKlammern.Visible = false;                                                                                                    // Textfeld ausblenden und leeren
             txtInfoKlammern.Text = "";
 
-            txtAnzeige.Text = txtAnzeige.Text.Replace("()", "");
+            txtAnzeige.Text = txtAnzeige.Text.Replace("()", "");                                                                                // Hier schon einmal (völlig falsche Stelle) "()" ersetzen durch "" - woanders hin=? JA
 
             if (txtAnzeige.Text.Length >0)
             {
-                txtInfoKlammern.Visible = (txtAnzeige.Text.IndexOf("(") > -1 || txtAnzeige.Text.IndexOf(")") > -1);
+                txtInfoKlammern.Visible = (txtAnzeige.Text.IndexOf("(") > -1 || txtAnzeige.Text.IndexOf(")") > -1);                             // Textfeld sichtbar machen, wenn "(" oder ")" vorhanden ist.
             }
 
-            if (!(txtInfoKlammern.Visible = true))
+            if (!(txtInfoKlammern.Visible = true))                                                                                              // Prüfung ist sichtbar?
             {
             }
             else
             {
-                AnzahlKlammerauf = txtAnzeige.Text.Length - txtAnzeige.Text.Replace("(", "").Length;
-                AnzahlKlammerzu = txtAnzeige.Text.Length - txtAnzeige.Text.Replace(")", "").Length;
+                AnzahlKlammerauf = txtAnzeige.Text.Length - txtAnzeige.Text.Replace("(", "").Length;                                            // Anzahl Klammern errechnen "(" - könnte anders gelöst werden
+                AnzahlKlammerzu = txtAnzeige.Text.Length - txtAnzeige.Text.Replace(")", "").Length;                                             // Anzahl Klammern errechnen ")"
 
-                txtInfoKlammern.Text = "Es gibt " + Convert.ToString(AnzahlKlammerauf) + "x ( und " + Convert.ToString(AnzahlKlammerzu) + "x )";
+                txtInfoKlammern.Text = "Es gibt " + Convert.ToString(AnzahlKlammerauf) + "x ( und " + Convert.ToString(AnzahlKlammerzu) + "x )";// Text ausgeben, den man möchte
             }
 
 
-            if (AnzahlKlammerauf==AnzahlKlammerzu)
+            if (AnzahlKlammerauf==AnzahlKlammerzu)                                                                                              // Ist das Klammerpaar OK?
             {
-                txtInfoKlammern.BackColor = Color.FromKnownColor(KnownColor.Green);
+                txtInfoKlammern.BackColor = Color.FromKnownColor(KnownColor.GreenYellow);                                                       // Dann mach grün
             } else
             {
-                txtInfoKlammern.BackColor = Color.FromKnownColor(KnownColor.Red);
+                txtInfoKlammern.BackColor = Color.FromKnownColor(KnownColor.Red);                                                               // oder Rot
             }
 
-            txtInfoKlammern.Visible = (AnzahlKlammerauf > 0);
+            txtInfoKlammern.Visible = (AnzahlKlammerauf > 0);                                                                                   // Info Text nur zeigen, wenn "(" da ist -- kann man besser machen 
         }
 
         public void Setzeleertext()
@@ -334,6 +471,8 @@ namespace Taschenrechner1
         private void Form1_Load(object sender, EventArgs e)
         {
             Setzeleertext();
+            webTRGoogle.Navigate("https://www.google.com/search?q=taschenrechner+google&oq=taschenrechner+google&aqs=chrome..69i57j0l7.2968j0j4&sourceid=chrome&ie=UTF-8");
+
         }
 
         private void btn_1_Click(object sender, EventArgs e)
@@ -506,18 +645,56 @@ namespace Taschenrechner1
         {
             Endergebnis = Zwischenergebnis.ToString();
 
-            if (txtAnzeige.Text.IndexOf("(") > 0 || txtAnzeige.Text.IndexOf(")") > 0)
-            {
-                txtAnzeige.Text= txtAnzeige.Text + "   Hier ist etwas anders zu machen!";
+            int first=0, last;                                                                                                                      // Ab hier eingefügt für Klammer Rechnung
+            string Teilstring;                                                                                                                      // Laufzeitvariablen Start und Endpunkt der innersten Klammer berechnen.
+            decimal Ergebnis;                                                                                                                       // Das Ergebnis als Debug Var
+            string Textmerken;                                                                                                                      // Die Debug Var kann später weg
+            string WebSuchURL=txtAnzeige.Text;                                                                                                      // String für Websuche
 
-            }else
+            if (txtAnzeige.Text.IndexOf("(") > 0 || txtAnzeige.Text.IndexOf(")") > 0)                                                               // Ist ein "(" oder ")" im Original Text
             {
-                txtAnzeige.Text = txtAnzeige.Text + " = " + Rechnen_n().ToString();
+                //txtAnzeige.Text= txtAnzeige.Text + "   Hier ist etwas anders zu machen!";
+                                                                                                                                                     // Dann beginne
+                do
+                {
+                    last = txtAnzeige.Text.IndexOf(")");                                                                                            // Ermittle das ersteVorkommen von ")"
+                    for (int i = last; i>= 0; i--)                                                                                                  // Suche von da Rückwärts die erste "("
+                    {
+                        if (txtAnzeige.Text.Substring(i, 1) == "(")
+                        {
+                            first = i;                                                                                                              // Treffer
+                            break;
+                        }
+                    }
+
+                    Teilstring = txtAnzeige.Text.Substring(first+1, last - first-1);                                                                // Ermittle den String zwischen den beiden innersten Klammern
+
+                    Ergebnis = Rechnen_nmitKlammern(Teilstring);                                                                                    // Errechne das Ergebnis aus Teilstring
+                                                                                                                                                    // Achtung 2+3+(8*9) ist OK ((2+3) + (7*8) / (9/9) auch OK?
+
+                    Textmerken = txtAnzeige.Text;                                                                                                   // Nur zu Debug Zwecken
+                    txtAnzeige.Text = txtAnzeige.Text.Substring(0,first - 1) + Convert.ToString(Ergebnis) + txtAnzeige.Text.Substring(last + 1);    // Original String manipulieren
+
+
+                } while (txtAnzeige.Text.IndexOf("(") > 0);                                                                                         // und von vorne, bis keine Klammer mehr da ist!
+
+                txtInfoKlammern.Visible = false;                                                                                                    // Info Feld aus.... da in Changed was passiert? Was?
+
+                txtAnzeige.Text = txtAnzeige.Text + " = " + Rechnen_n().ToString();                                                                 // und den letzten String (also 5+56/1) errechnen...
+                                                                                                                                                    // Achtung die Funktion "Rechnen_n" wird gebraucht, bis Umbau wie Rechnen_mitKlammern
+
+            }
+            else
+            {
+                txtAnzeige.Text = txtAnzeige.Text + " = " + Rechnen_n().ToString();                                                                 // Normale Berechnung...
             }
 
             ClearA();
             Ergebnisset = true;
 
+            webTRGoogle.Visible = true;
+            webTRGoogle.Navigate("https://www.google.com/search?q=taschenrechner+" + WebSuchURL.Replace("+", "%2B").Replace(" ", " +").Replace("/", "%2F"));
+                
         }
 
         private void btn_00_Click(object sender, EventArgs e)
@@ -544,5 +721,11 @@ namespace Taschenrechner1
         {
             addnum(" ^ ");
         }
+
+        private void webTRGoogle_DocumentCompleted(object sender, WebBrowserDocumentCompletedEventArgs e)
+        {
+
+        }
+
     }
 }

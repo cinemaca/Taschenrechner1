@@ -54,6 +54,7 @@
             this.btn_klammerzu = new System.Windows.Forms.Button();
             this.txtInfoKlammern = new System.Windows.Forms.TextBox();
             this.button1 = new System.Windows.Forms.Button();
+            this.webTRGoogle = new System.Windows.Forms.WebBrowser();
             this.SuspendLayout();
             // 
             // btn_1
@@ -317,11 +318,22 @@
             this.button1.UseVisualStyleBackColor = false;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
+            // webTRGoogle
+            // 
+            this.webTRGoogle.Location = new System.Drawing.Point(91, 285);
+            this.webTRGoogle.MinimumSize = new System.Drawing.Size(20, 20);
+            this.webTRGoogle.Name = "webTRGoogle";
+            this.webTRGoogle.Size = new System.Drawing.Size(1313, 557);
+            this.webTRGoogle.TabIndex = 25;
+            this.webTRGoogle.Visible = false;
+            this.webTRGoogle.DocumentCompleted += new System.Windows.Forms.WebBrowserDocumentCompletedEventHandler(this.webTRGoogle_DocumentCompleted);
+            // 
             // Taschenrechner_Fenster
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1204, 683);
+            this.ClientSize = new System.Drawing.Size(1506, 854);
+            this.Controls.Add(this.webTRGoogle);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.txtInfoKlammern);
             this.Controls.Add(this.btn_klammerzu);
@@ -385,6 +397,7 @@
         private System.Windows.Forms.Button btn_klammerzu;
         private System.Windows.Forms.TextBox txtInfoKlammern;
         private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.WebBrowser webTRGoogle;
     }
 }
 
