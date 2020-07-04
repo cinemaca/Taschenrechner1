@@ -615,12 +615,15 @@ namespace Taschenrechner1
                 Ergebnisset = false;
                 int istgleichichspot = Finde_Zeichen("=") + 1;
                 txtAnzeige.Text = txtAnzeige.Text.Substring(istgleichichspot, txtAnzeige.Text.Length - istgleichichspot);
+                webTRGoogle.Visible = false;
             }
         }
 
         private void txtAnzeige_Click(object sender, EventArgs e)
         {
-            if(txtAnzeige.Text == "Bitte geben sie Zahlen und Rechenoperationen ein!")
+            webTRGoogle.Visible = false;
+
+            if (txtAnzeige.Text == "Bitte geben sie Zahlen und Rechenoperationen ein!")
             {
                 txtAnzeige.Text = "";
             }
