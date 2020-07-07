@@ -241,9 +241,17 @@ namespace Taschenrechner1
 
                     case "-":
                         Find_Ergebnis = Find_ZE(i, ZE);
-                        ZE[Find_Ergebnis] = Convert.ToString(Convert.ToDecimal(ZE[i - 1]) - Convert.ToDecimal(ZE[Find_Ergebnis]));
-                        ZE[i] = "";
-                        ZE[i - 1] = "";
+                        if(ZE[i - 1] == "")
+                        {
+                            ZE[Find_Ergebnis] = ZE[i] + ZE[Find_Ergebnis];
+                        }
+                        else
+                        {
+                            ZE[Find_Ergebnis] = Convert.ToString(Convert.ToDecimal(ZE[i - 1]) - Convert.ToDecimal(ZE[Find_Ergebnis]));
+                            ZE[i] = "";
+                            ZE[i - 1] = "";
+                        }
+                        
                         break;
                 }
 
@@ -347,16 +355,30 @@ namespace Taschenrechner1
 
 
 
-        public void addnum(string wert, bool Leerzeichen = false, bool lastNum = false)
+        public void addnum(string wert, bool Leerzeichen = false, bool lastNum = false, bool Vorzeichen = false)
         {
             btn_istgleich.Visible = true;
+            btn_durch.Visible = true;
+            btn_plus.Visible = true;
+            btn_minus.Visible = true;
+            btn_mal.Visible = true;
+            btn_hoch.Visible = true;
             Zeichen = "";
+
+            if (Vorzeichen)
+            {
+                Leerzeichen = false;
+            }
 
 
             if (Leerzeichen)
             {
                 Zeichen = " ";
                 btn_istgleich.Visible = false;
+                btn_durch.Visible = false;
+                btn_plus.Visible = false;
+                btn_mal.Visible = false;
+                btn_hoch.Visible = false;
 
                 switch (counter)
                 {
@@ -392,7 +414,6 @@ namespace Taschenrechner1
                     counter++;
                     zugewiesen = false;
                 }
-
                 
 
             }
@@ -535,7 +556,13 @@ namespace Taschenrechner1
 
         private void btn_minus_Click(object sender, EventArgs e)
         {
-            addnum("-", true);
+            bool VZeichen_Set = false;
+
+            if (txtAnzeige.Text == "" || txtAnzeige.Text.Substring(txtAnzeige.Text.Length - 1, 1) == " " || txtAnzeige.Text.Substring(txtAnzeige.Text.Length - 1, 1) == "+" || txtAnzeige.Text.Substring(txtAnzeige.Text.Length - 1, 1) == "-" || txtAnzeige.Text.Substring(txtAnzeige.Text.Length - 1, 1) == "*" || txtAnzeige.Text.Substring(txtAnzeige.Text.Length - 1, 1) == "/" || txtAnzeige.Text.Substring(txtAnzeige.Text.Length - 1, 1) == "^")
+            {
+                VZeichen_Set = true;
+            }
+            addnum("-", true, false, VZeichen_Set);
 
         }
 
@@ -617,6 +644,7 @@ namespace Taschenrechner1
                 txtAnzeige.Text = txtAnzeige.Text.Substring(istgleichichspot, txtAnzeige.Text.Length - istgleichichspot);
                 webTRGoogle.Visible = false;
             }
+            
         }
 
         private void txtAnzeige_Click(object sender, EventArgs e)
@@ -720,7 +748,7 @@ namespace Taschenrechner1
             addnum("");
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void btn_hoch_Click(object sender, EventArgs e)
         {
             addnum(" ^ ");
         }
