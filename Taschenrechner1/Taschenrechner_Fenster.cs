@@ -26,6 +26,7 @@ namespace Taschenrechner1
         decimal Zwischenergebnis = 0;
         bool Funktionausführung = false;
         bool Ergebnisset = false;
+        int Vorzeichen_Minus = 0;
 
         public void ClearA(bool hardReset = false)
         {
@@ -80,8 +81,11 @@ namespace Taschenrechner1
         {
             for (int i = start + 1; i <= ZE.Length - 1; i++)
             {
-
-                if (ZE[i] != "")
+                Vorzeichen_Minus = i;
+                if (ZE[i] == "-")
+                {
+                    return i + 1;
+                } else if(ZE[i] != "")
                 {
                     return i;
                 }
@@ -211,14 +215,35 @@ namespace Taschenrechner1
                 {
                     case "*":
                         Find_Ergebnis = Find_ZE(i, ZE);
-                        ZE[Find_Ergebnis] = Convert.ToString(Convert.ToDecimal(ZE[i - 1]) * Convert.ToDecimal(ZE[Find_Ergebnis]));
+                        if (Find_Ergebnis > Vorzeichen_Minus)
+                        {
+                            ZE[Find_Ergebnis - 1] = "";
+                            string v = Convert.ToString(Convert.ToDecimal(ZE[i - 1]) * Convert.ToDecimal(value: "-" + ZE[Find_Ergebnis]));
+                            ZE[Find_Ergebnis] = v;
+                        }
+                        else
+                        {
+                            ZE[Find_Ergebnis] = Convert.ToString(Convert.ToDecimal(ZE[i - 1]) * Convert.ToDecimal(ZE[Find_Ergebnis]));
+                        }
+                       
                         ZE[i] = "";
                         ZE[i - 1] = "";
                         break;
 
                     case "/":
+
                         Find_Ergebnis = Find_ZE(i, ZE);
-                        ZE[Find_Ergebnis] = Convert.ToString(Convert.ToDecimal(ZE[i - 1]) / Convert.ToDecimal(ZE[Find_Ergebnis]));
+                        if (Find_Ergebnis > Vorzeichen_Minus)
+                        {
+                            ZE[Find_Ergebnis - 1] = "";
+                            string v = Convert.ToString(Convert.ToDecimal(ZE[i - 1]) / Convert.ToDecimal(value: "-" + ZE[Find_Ergebnis]));
+                            ZE[Find_Ergebnis] = v;
+                        }
+                        else
+                        {
+                            ZE[Find_Ergebnis] = Convert.ToString(Convert.ToDecimal(ZE[i - 1]) / Convert.ToDecimal(ZE[Find_Ergebnis]));
+                        }
+                        
                         ZE[i] = "";
                         ZE[i - 1] = "";
                         break;
@@ -233,7 +258,17 @@ namespace Taschenrechner1
                 {
                     case "+":
                         Find_Ergebnis = Find_ZE(i, ZE);
-                        ZE[Find_Ergebnis] = Convert.ToString(Convert.ToDecimal(ZE[i - 1]) + Convert.ToDecimal(ZE[Find_Ergebnis]));
+                        if(Find_Ergebnis > Vorzeichen_Minus)
+                        {
+                            ZE[Find_Ergebnis - 1] = "";
+                            string v = Convert.ToString(Convert.ToDecimal(ZE[i - 1]) + Convert.ToDecimal(value: "-" + ZE[Find_Ergebnis]));
+                            ZE[Find_Ergebnis] = v;
+                        }
+                        else
+                        {
+                            ZE[Find_Ergebnis] = Convert.ToString(Convert.ToDecimal(ZE[i - 1]) + Convert.ToDecimal(ZE[Find_Ergebnis]));
+                        }
+                        
                         ZE[i] = "";
                         ZE[i - 1] = "";
                         
@@ -247,7 +282,18 @@ namespace Taschenrechner1
                         }
                         else
                         {
-                            ZE[Find_Ergebnis] = Convert.ToString(Convert.ToDecimal(ZE[i - 1]) - Convert.ToDecimal(ZE[Find_Ergebnis]));
+                            Find_Ergebnis = Find_ZE(i, ZE);
+                            if (Find_Ergebnis > Vorzeichen_Minus)
+                            {
+                                ZE[Find_Ergebnis - 1] = "";
+                                string v = Convert.ToString(Convert.ToDecimal(ZE[i - 1]) - Convert.ToDecimal(value: "-" + ZE[Find_Ergebnis]));
+                                ZE[Find_Ergebnis] = v;
+                            }
+                            else
+                            {
+                                ZE[Find_Ergebnis] = Convert.ToString(Convert.ToDecimal(ZE[i - 1]) - Convert.ToDecimal(ZE[Find_Ergebnis]));
+                            }
+                            
                             ZE[i] = "";
                             ZE[i - 1] = "";
                         }
