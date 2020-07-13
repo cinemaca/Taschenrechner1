@@ -133,7 +133,7 @@ namespace Taschenrechner1
 
 
         public string Structure_set_mitKlammern(string Textzumbearbeiten)                                                               // Gleiche Funktion wie "Structure_set" nur mit Parameter
-        {                                                                                                                               // Empfehlung Umbau zu der Funktion hier?
+        {                                                                                                                               // Umbau zu der Funktion ist sinnvoll.
             Textzumbearbeiten = Textzumbearbeiten.Replace(".", ",");
             Textzumbearbeiten = Textzumbearbeiten.Replace(" ", "");
             Textzumbearbeiten = Textzumbearbeiten.Replace("+", " + ");
@@ -176,7 +176,7 @@ namespace Taschenrechner1
         }
 
 
-        public decimal Rechnen_n()                                                                                                                  // Empfehlung Umbau zu "Rechnen_nmitKlammern"
+        public decimal Rechnen_n()                                                                                                                  // Empfehlung Umbau zu "Rechnen_nmitKlammern" klingt auch gut.
         {
             int Find_Ergebnis;
             Structure_set();
@@ -270,7 +270,7 @@ namespace Taschenrechner1
         public decimal Rechnen_nmitKlammern(string Textzumberechnen)                                                        // Neue Funkion, eigentlich eine Kopie von "Rechnen_n" nur mit Parameter
         {                                                                                                                   // Es wurde nur txtAnzeige.Text durch Textzumberechnen ersetzt und Variablen eingefügt
             int Find_Ergebnis;
-            Textzumberechnen= Structure_set_mitKlammern(Textzumberechnen);                                                  // Neuer Aufruf Structure_set_mitKlammern - da diese auch Parametriesiert ist Empfehlung switchen zu dieser hier
+            Textzumberechnen= Structure_set_mitKlammern(Textzumberechnen);                                                  // Neue Mainrechenfunktion ist sinnvoll.
             string[] Nums_Ops = Textzumberechnen.Split(' ');
             string[] ZE = Textzumberechnen.Split(' ');
 
@@ -491,6 +491,12 @@ namespace Taschenrechner1
 
         private void Form1_Load(object sender, EventArgs e)
         {
+            btn_istgleich.Visible = false;
+            btn_durch.Visible = false;
+            btn_plus.Visible = false;
+            btn_minus.Visible = true;
+            btn_mal.Visible = false;
+            btn_hoch.Visible = false;
             Setzeleertext();
             webTRGoogle.Navigate("https://www.google.com/search?q=taschenrechner+google&oq=taschenrechner+google&aqs=chrome..69i57j0l7.2968j0j4&sourceid=chrome&ie=UTF-8");
 
@@ -562,7 +568,16 @@ namespace Taschenrechner1
             {
                 VZeichen_Set = true;
             }
-            addnum("-", true, false, VZeichen_Set);
+
+            if (VZeichen_Set)
+            {
+                addnum("-", false, false, VZeichen_Set);
+            }
+            else
+            {
+                addnum("-", true, false, VZeichen_Set);
+            }
+           
 
         }
 
