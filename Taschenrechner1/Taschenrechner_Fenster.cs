@@ -401,7 +401,7 @@ namespace Taschenrechner1
 
 
 
-        public void addnum(string wert, bool Leerzeichen = false, bool lastNum = false, bool Vorzeichen = false)
+        public void addnum(string wert, bool Leerzeichen = false, bool lastNum = false, bool Vorzeichen = false, bool firstNum = false)
         {
             btn_istgleich.Visible = true;
             btn_durch.Visible = true;
@@ -471,14 +471,14 @@ namespace Taschenrechner1
                     txtAnzeige.Text = "";
                 }
             }
-
-            if (Leerzeichen == true && txtAnzeige.Text.Substring(txtAnzeige.Text.Length-1, 1)==" ")
-            {
-                txtAnzeige.Text = txtAnzeige.Text.Substring(0, txtAnzeige.Text.Length - 3);
-            } else if(lastNum == false)
+            if (lastNum == false || firstNum)
             {
                 txtAnzeige.Text = txtAnzeige.Text + Zeichen + wert + Zeichen;
             }
+            else if (Leerzeichen == true && txtAnzeige.Text.Substring(txtAnzeige.Text.Length-1, 1)==" ")
+            {
+                txtAnzeige.Text = txtAnzeige.Text.Substring(0, txtAnzeige.Text.Length - 3);
+            } 
 
             SetzeInfoKlammernText();
 
@@ -617,11 +617,11 @@ namespace Taschenrechner1
 
             if (VZeichen_Set)
             {
-                addnum("-", false, false, VZeichen_Set);
+                addnum("-", false, false, VZeichen_Set, true);
             }
             else
             {
-                addnum("-", true, false, VZeichen_Set);
+                addnum("-", true, false, VZeichen_Set, true);
             }
            
 
